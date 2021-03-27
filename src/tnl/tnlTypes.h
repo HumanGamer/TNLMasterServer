@@ -306,7 +306,7 @@ typedef unsigned long long  U64;  ///< Compiler independent unsigned 64-bit inte
 #  else
 #    define TNL_SUPPORTS_VC_INLINE_X86_ASM
 #  endif
-#elif defined(_M_X64) || defined(_M_AMD64)
+#elif defined(_M_X64) || defined(_M_AMD64) || defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64)
 #  define TNL_CPU_STRING "AMD64"
 #  define TNL_CPU_X64
 #  define TNL_LITTLE_ENDIAN

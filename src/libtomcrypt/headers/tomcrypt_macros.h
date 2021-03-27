@@ -262,21 +262,22 @@ static inline unsigned ROR(unsigned word, int i)
 
 #ifndef LTC_NO_ROLC
 
-static inline unsigned ROLc(unsigned word, const int i)
-{
-   asm ("roll %2,%0"
-      :"=r" (word)
-      :"0" (word),"I" (i));
-   return word;
-}
-
-static inline unsigned RORc(unsigned word, const int i)
-{
-   asm ("rorl %2,%0"
-      :"=r" (word)
-      :"0" (word),"I" (i));
-   return word;
-}
+#define ROLc(word,i) ({ \
+   ulong32 ROLc_tmp = (word); \
+   __asm__ ("roll %2, %0" : \
+            "=r" (ROLc_tmp) : \
+            "0" (ROLc_tmp), \
+            "I" (i)); \
+            ROLc_tmp; \
+   })
+#define RORc(word,i) ({ \
+   ulong32 RORc_tmp = (word); \
+   __asm__ ("rorl %2, %0" : \
+            "=r" (RORc_tmp) : \
+            "0" (RORc_tmp), \
+            "I" (i)); \
+            RORc_tmp; \
+   })
 
 #else
 
@@ -317,21 +318,22 @@ static inline unsigned long ROR64(unsigned long word, int i)
 
 #ifndef LTC_NO_ROLC
 
-static inline unsigned long ROL64c(unsigned long word, const int i)
-{
-   asm("rolq %2,%0"
-      :"=r" (word)
-      :"0" (word),"J" (i));
-   return word;
-}
-
-static inline unsigned long ROR64c(unsigned long word, const int i)
-{
-   asm("rorq %2,%0"
-      :"=r" (word)
-      :"0" (word),"J" (i));
-   return word;
-}
+#define ROL64c(word,i) ({ \
+   ulong64 ROL64c_tmp = word; \
+   __asm__ ("rolq %2, %0" : \
+            "=r" (ROL64c_tmp) : \
+            "0" (ROL64c_tmp), \
+            "J" (i)); \
+            ROL64c_tmp; \
+   })
+#define ROR64c(word,i) ({ \
+   ulong64 ROR64c_tmp = word; \
+   __asm__ ("rorq %2, %0" : \
+            "=r" (ROR64c_tmp) : \
+            "0" (ROR64c_tmp), \
+            "J" (i)); \
+            ROR64c_tmp; \
+   })
 
 #else /* LTC_NO_ROLC */
 

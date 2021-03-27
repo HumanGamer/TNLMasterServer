@@ -36,6 +36,10 @@
 #include "tnlPlatform.h"
 #endif
 
+#ifndef _TNL_ASSERT_H_
+#include "tnlAssert.h"
+#endif
+
 #define VectorBlockSize 16
 
 namespace TNL {

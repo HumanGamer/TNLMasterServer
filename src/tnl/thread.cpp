@@ -101,7 +101,7 @@ DWORD WINAPI ThreadProc( LPVOID lpParameter )
    return ((Thread *) lpParameter)->run();
 }
 
-U32 Thread::run()
+size_t Thread::run()
 {
    return 0;
 }
@@ -223,7 +223,7 @@ ThreadQueue::ThreadQueueThread::ThreadQueueThread(ThreadQueue *q)
    mThreadQueue = q;
 }
 
-U32 ThreadQueue::ThreadQueueThread::run()
+size_t ThreadQueue::ThreadQueueThread::run()
 {
    mThreadQueue->threadStart();
 

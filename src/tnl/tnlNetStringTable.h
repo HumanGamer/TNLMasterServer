@@ -34,7 +34,7 @@
 namespace TNL {
 
 
-typedef U32 StringTableEntryId;
+typedef size_t StringTableEntryId;
 
 //--------------------------------------
 /// A global table for the hashing and tracking of network strings.
